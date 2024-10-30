@@ -27,6 +27,10 @@
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
+        let gravity=0
+        let particleTrue=false
+        let clicked=false
+
         function getRandomArbitrary(min, max) {
             return Math.random() * (max - min) + min;
         }
@@ -37,12 +41,13 @@
                 this.y = y;
                 this.sx = getRandomArbitrary(-10, 10); // Random horizontal speed
                 this.sy = getRandomArbitrary(-10, 10); // Random vertical speed upwards
-                this.gravity = 0; // Adjust gravity for visible falling effect
+                this.gravity = gravity; // Adjust gravity for visible falling effect
                 this.size = 5; // Size of the particle
                 this.history = []; // Array to store past positions
             }
 
             update() {
+                this.gravity=gravity
                 this.sy += this.gravity; // Apply gravity
                 this.y += this.sy; // Update vertical position
                 this.x += this.sx; // Update horizontal position
@@ -75,17 +80,35 @@
         let particlesArray = [];
 
         button.addEventListener('mouseenter', () => {
+            particlesArray=[]
             body.style.backgroundColor = 'black'; // Change background to black on hover
+            if(!clicked){
+                particleTrue=true
+            }
         });
 
         button.addEventListener('mouseleave', () => {
             body.style.backgroundColor = ''; // Revert to original background color
+            particleTrue=false
+
+        });
+
+        button.addEventListener('click', () => {
+            gravity=0.7
+            particleTrue=false
+            clicked=true
+            button.style.fontSize = '50px'
+            button.style.opacity = '0'
+            button.addEventListener('transitionend', () => {
+                button.remove(); // Remove the button from the DOM
+            });
         });
 
 
         function animate() {
-            particlesArray.push(new Particle(canvas.width / 2, canvas.height / 2));
-
+            if(particleTrue){
+                particlesArray.push(new Particle(canvas.width / 2, canvas.height / 2));
+            }
             ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear the canvas
             // Update and draw each particle
             particlesArray.forEach((particle, index) => {
