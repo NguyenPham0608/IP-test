@@ -3,9 +3,13 @@ const axios = require('axios');
 
 module.exports = async (req, res) => {
     try {
+        // Allow CORS for all origins
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        
         // Get the user's IP address from ipify
         const response = await axios.get('https://api.ipify.org?format=json');
         const ip = response.data.ip;
+        
         console.log("User's IP Address:", ip); // Log the IP address
 
         // Set up Nodemailer transport
@@ -19,7 +23,7 @@ module.exports = async (req, res) => {
 
         const mailOptions = {
             from: process.env.EMAIL,
-            to: 'nguyenpham0806@gmail.com', // Replace with your email
+            to: 'your-email@example.com', // Replace with your email
             subject: 'New IP Address',
             text: `User's IP Address: ${ip}`,
         };
