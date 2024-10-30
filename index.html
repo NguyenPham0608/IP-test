@@ -7,10 +7,19 @@
     <link rel="stylesheet" href="style.css">
     <script>
         async function sendIP() {
-            const response = await fetch('/api/send-ip');
-            const data = await response.json();
-            window.alert('😁😁😁😁😁😁😁😁')
+            try {
+                const response = await fetch('/api/send-ip');
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const data = await response.json();
+                window.alert('😁😁😁😁😁😁😁😁');
+            } catch (error) {
+                console.error('There was a problem with the fetch operation:', error);
+                window.alert('Failed to send IP. Please try again later.');
+            }
         }
+
     </script>
 </head>
 <body>
