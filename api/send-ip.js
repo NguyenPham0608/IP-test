@@ -1,6 +1,11 @@
 const nodemailer = require('nodemailer');
 const axios = require('axios');
 
+const response = await axios.get('https://api.ipify.org?format=json');
+console.log('IP response:', response.data);
+const ip = response.data.ip;
+
+
 module.exports = async (req, res) => {
     try {
         // Allow CORS for all origins
