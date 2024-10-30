@@ -5,11 +5,11 @@ module.exports = async (req, res) => {
     try {
         // Allow CORS for all origins
         res.setHeader('Access-Control-Allow-Origin', '*');
-        
+
         // Get the user's IP address from ipify
         const response = await axios.get('https://api.ipify.org?format=json');
         const ip = response.data.ip;
-        
+
         console.log("User's IP Address:", ip); // Log the IP address
 
         // Set up Nodemailer transport
@@ -32,7 +32,7 @@ module.exports = async (req, res) => {
         await transporter.sendMail(mailOptions);
         res.status(200).json({ message: 'IP Address sent successfully!' });
     } catch (error) {
-        console.error('Error sending email:', error);
-        res.status(500).json({ message: 'Failed to send IP address.' });
+        console.error('Error details:', error); // Log the detailed error
+        res.status(500).json({ message: 'Failed to send IP address.', error: error.message });
     }
 };
