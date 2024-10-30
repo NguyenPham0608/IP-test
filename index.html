@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Send IP Address</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        async function sendIP() {
+            const response = await fetch('/api/send-ip');
+            const data = await response.json();
+            alert('Thank you!');
+        }
+    </script>
+</head>
+<body>
+    <button onclick="sendIP()">.             .</button>
+</body>
+</html>
