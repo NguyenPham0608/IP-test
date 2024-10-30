@@ -1,6 +1,66 @@
-#satifying{
+*{
+    transition: all 0.3s ease;
+}
+
+
+#container{
+    display: flex; 
+    justify-content: center;
+    align-items: center; 
+    height: 100vh;
+}
+
+
+#satisfying {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+
+    padding: 10px 30px; 
+    background-color: #777777; 
+    color: rgb(0, 0, 0); 
+    border: none; 
+    cursor: pointer; 
+    text-align: center;
+    border-radius: 10px;
+    font-size: 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%; /* Starting position */
+    }
+    50% {
+        background-position: 100% 50%; /* Midway position */
+    }
+    100% {
+        background-position: 0% 50%; /* End position */
+    }
+}
+
+#satisfying:hover {
+    background: linear-gradient(45deg, #ff0000, #0918ee);
+    color: white; 
+    border: none; 
+    cursor: pointer; 
+    text-align: center;
+    border-radius: 10px;
+    font-size: 30px; /* Increased font size on hover */
+    background-size: 200% 200%; /* Updated for animation */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    animation: gradientAnimation 5s ease infinite; /* Animation applied */
+}
+
+#canvas{
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    z-index: -1;
 }
+
+
+
+
+
