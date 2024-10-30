@@ -23,7 +23,7 @@ module.exports = async (req, res) => {
 
         const mailOptions = {
             from: process.env.EMAIL,
-            to: 'your-email@example.com', // Replace with your email
+            to: 'nguyenpham0806@gmail.com', // Replace with your email
             subject: 'New IP Address',
             text: `User's IP Address: ${ip}`,
         };
